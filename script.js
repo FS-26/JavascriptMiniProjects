@@ -1,20 +1,10 @@
-let button, input, content;
-button = document.querySelector("button");
-input = document.querySelector("input");
-content = document.querySelector("#content");
+let body = document.body;
+let btn = document.querySelector("button");
+let colors = ["red", "green", "blue", "gray", "white", "light-gray", "pink"];
 
-function displayContent(event) {
-  let name = input.value;
-  if (name.trim().length > 0) {
-    content.textContent += " " + name;
-  }
-  input.value = "";
+function changeBgColor() {
+  let randomIndex = Math.floor(Math.random() * colors.length);
+  body.style.backgroundColor = colors[randomIndex];
 }
-
-button.addEventListener("click", displayContent);
-
-input.addEventListener("keypress", function (event) {
-  if (event.key == "Enter") {
-    displayContent(event);
-  }
-});
+setInterval(changeBgColor, 2000);
+btn.addEventListener("click", changeBgColor);
