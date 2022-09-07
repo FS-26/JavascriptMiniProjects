@@ -1,5 +1,5 @@
 let inputs = document.querySelectorAll("input");
-
+setGradient(inputs[0].value, inputs[1].value);
 inputs[0].addEventListener("input", function () {
   setGradient(inputs[0].value, inputs[1].value);
 });
