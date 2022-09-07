@@ -1,20 +1,13 @@
-let button, input, content;
-button = document.querySelector("button");
-input = document.querySelector("input");
-content = document.querySelector("#content");
+let inputs = document.querySelectorAll("input");
 
-function displayContent(event) {
-  let name = input.value;
-  if (name.trim().length > 0) {
-    content.textContent += " " + name;
-  }
-  input.value = "";
-}
-
-button.addEventListener("click", displayContent);
-
-input.addEventListener("keypress", function (event) {
-  if (event.key == "Enter") {
-    displayContent(event);
-  }
+inputs[0].addEventListener("input", function () {
+  setGradient(inputs[0].value, inputs[1].value);
 });
+
+inputs[1].addEventListener("input", function () {
+  setGradient(inputs[0].value, inputs[1].value);
+});
+
+function setGradient(color1, color2) {
+  document.body.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
+}
