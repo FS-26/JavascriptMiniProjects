@@ -1,20 +1,11 @@
-let button, input, content;
-button = document.querySelector("button");
-input = document.querySelector("input");
-content = document.querySelector("#content");
+let icon = document.querySelector("i");
+let paragraph = document.querySelector("#content");
 
-function displayContent(event) {
-  let name = input.value;
-  if (name.trim().length > 0) {
-    content.textContent += " " + name;
-  }
-  input.value = "";
-}
-
-button.addEventListener("click", displayContent);
-
-input.addEventListener("keypress", function (event) {
-  if (event.key == "Enter") {
-    displayContent(event);
+icon.addEventListener("click", function () {
+  paragraph.classList.remove("hide");
+  if (paragraph.classList.contains("hide")) {
+    icon.classList.replace("fa-minus", "fa-plus");
+  } else {
+    icon.classList.replace("fa-plus", "fa-minus");
   }
 });

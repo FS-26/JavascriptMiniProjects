@@ -1,14 +1,28 @@
-.dark-mode {
-  background-color: black !important;
-  color: white !important;
+body {
+  margin: 0;
 }
 
-.light-mode {
-  background-color: white !important;
-  color: black !important;
+div {
+  width: 60vw;
+  margin: auto;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.bold {
-  font-weight: 900;
-  font-size: 1.7em;
+h2 {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: blue;
+  color: white;
+  margin: 0;
+}
+
+#content {
+  padding: 10px;
+}
+
+.hide {
+  display: none;
 }
