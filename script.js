@@ -1,12 +1,11 @@
-let title = document.querySelector("h2");
-let icon = document.querySelector("i");
-let paragraph = document.querySelector("#content");
+let inputs = document.querySelectorAll("input");
+let button = document.querySelector("button");
 
-title.addEventListener("click", function () {
-  paragraph.classList.toggle("hide");
-  if (paragraph.classList.contains("hide")) {
-    icon.classList.replace("fa-minus", "fa-plus");
-  } else {
-    icon.classList.replace("fa-plus", "fa-minus");
-  }
+button.addEventListener("click", function () {
+  let poids = Number(inputs[1].value);
+  let taille = Number(inputs[0].value) / 100;
+  let bmi = (poids / (taille * taille)).toFixed(2);
+  document.querySelector("#resultat").textContent = bmi;
+  inputs[0].value = "";
+  inputs[1].value = "";
 });
