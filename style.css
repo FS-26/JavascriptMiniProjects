@@ -1,9 +1,13 @@
-body{
-  height: 150vh;
+.is_invalid{
+  all: unset;
+  outline: 2px solid red !important;
 }
 
-p{
-  width: 100px;
-  height: 100px;
-  overflow: scroll;
+.is_valid{
+  all: unset;
+  outline: 2px solid green !important;
+}
+
+.invalid_message{
+  color: red;
 }

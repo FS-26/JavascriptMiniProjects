@@ -1,15 +1,18 @@
-window.addEventListener("scroll", function () {
-  console.log("scrolling....");
-});
+let form = document.querySelector("form");
 
-document.querySelector("p").addEventListener("scroll", function () {
-  console.log("scroll in paragraph");
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let inputs = form.elements;
+  let invMess = document.querySelector(".invalid_message");
+  if (inputs["nom"].value.length == 0) {
+    inputs["nom"].className = "is_invalid";
+    invMess.textContent = "Le champ Nom est Obligatoire";
+  } else {
+    inputs["nom"].className = "is_valid";
+    invMess.textContent = "";
+    // recuperation de la valeur saisi qui est valide
+    const nom = inputs["nom"].value;
+    console.log(nom);
+  }
+  const email = form.elements["email"].value;
 });
-// document.addEventListener("load", function () {
-//   alert("Hello");
-//   console.log("loaded");
-// });
-// document.addEventListener("DOMContentLoaded", function () {
-//   alert("Hello");
-//   //   console.log("loaded");
-// });
