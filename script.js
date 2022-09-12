@@ -1,85 +1,54 @@
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+let select = document.querySelector("select");
+let checkBox = document.querySelector("input");
+let spans = document.querySelectorAll("span");
+let pSign = document.getElementById("sign");
+let numb1;
+let numb2;
+let result;
+numb1 = getRandomNumber();
+numb2 = getRandomNumber();
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10);
 }
 
-let chance;
-let nombreTrouve; // To determine if the guessed number correspond to the random nomber
-let entier;
-let message;
+spans[0].textContent = numb1;
+spans[1].textContent = numb2;
+result = numb1 + numb2;
+spans[2].textContent = result;
 
-let userguess = document.querySelector("input");
-let button = document.querySelector("button");
-let buttonRest = document.querySelector("#restart-area > button");
-let resultat = document.getElementById("resultat");
-/**
- * init
- * Initialize the values:
- * chance => number of chance of the user before game over to 3
- * nombreTrouve => false
- * entier => the random number
- *
- * init the result text to empty
- * init the color of the text to black
- *
- */
-function init() {
-  chance = 3;
-  nombreTrouve = false;
-  entier = randomNumber(1, 10);
-  resultat.textContent = "";
-  resultat.style.color = "black";
-}
-/**
- * displayRestartView
- * display the Restart block
- * hide the game block
- */
-function displayRestartView() {
-  document.querySelector("#restart-area").style.display = "block";
-  document.querySelector("#game-area").style.display = "none";
-}
-/**
- * displayGameView
- * reset the values with init function
- * display the game block
- * hide the restart block
- */
-function displayGameView() {
-  init();
-  document.querySelector("#restart-area").style.display = "none";
-  document.querySelector("#game-area").style.display = "block";
-}
+select.addEventListener("change", function () {
+  console.log(event.target);
+  // console.log(select.value);
+  let sign = select.value;
+  pSign.textContent = sign;
+  switch (sign) {
+    case "+": {
+      result = numb1 + numb2;
+      break;
+    }
 
-init(); //call to the init function, when the js file is loaded gor the first time
-
-function guessNumber() {
-  let number = Number(userguess.value);
-  console.log(number);
-  if (number > entier) {
-    message = `${number} is high , enter a lower number`;
-    chance--;
-  } else if (number === entier) {
-    message = "you got it right";
-    nombreTrouve = true;
-  } else {
-    message = `${number} is low , enter a higher number`;
-    chance--;
+    case "-": {
+      result = numb1 - numb2;
+      break;
+    }
+    case "*": {
+      result = numb1 * numb2;
+      break;
+    }
+    case "/": {
+      result = numb1 / numb2;
+      break;
+    }
+    default:
+      result = numb1 + numb2;
+      break;
   }
+  spans[2].textContent = result;
+});
 
-  if (chance === 0 && nombreTrouve === false) {
-    message = "Vous avez echoué";
-    resultat.style.color = "red";
-    displayRestartView();
-  }
+// CheckBox Event
 
-  if (nombreTrouve === true) {
-    message = "Bien Joué";
-    resultat.style.color = "green";
-    displayRestartView();
-  }
-  resultat.textContent = message;
-  userguess.value = "";
-}
-
-button.addEventListener("click", guessNumber);
-buttonRest.addEventListener("click", displayGameView);
+checkBox.addEventListener("change", function (e) {
+  // console.log(e);
+  console.log(checkBox.checked);
+});
