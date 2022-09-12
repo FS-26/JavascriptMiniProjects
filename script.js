@@ -1,54 +1,19 @@
-let select = document.querySelector("select");
-let checkBox = document.querySelector("input");
-let spans = document.querySelectorAll("span");
-let pSign = document.getElementById("sign");
-let numb1;
-let numb2;
-let result;
-numb1 = getRandomNumber();
-numb2 = getRandomNumber();
-function getRandomNumber() {
-  return Math.floor(Math.random() * 10);
-}
+let heading1 = document.querySelector("h1");
+let text;
+text = "I am fullstack Developer";
+let i = 0;
 
-spans[0].textContent = numb1;
-spans[1].textContent = numb2;
-result = numb1 + numb2;
-spans[2].textContent = result;
-
-select.addEventListener("change", function () {
-  console.log(event.target);
-  // console.log(select.value);
-  let sign = select.value;
-  pSign.textContent = sign;
-  switch (sign) {
-    case "+": {
-      result = numb1 + numb2;
-      break;
-    }
-
-    case "-": {
-      result = numb1 - numb2;
-      break;
-    }
-    case "*": {
-      result = numb1 * numb2;
-      break;
-    }
-    case "/": {
-      result = numb1 / numb2;
-      break;
-    }
-    default:
-      result = numb1 + numb2;
-      break;
+function typeWrite() {
+  if (i < text.length) {
+    heading1.textContent += text.charAt(i);
+    i++;
+    setTimeout(typeWrite, 100);
+  } else {
+    setTimeout(function () {
+      heading1.textContent = "";
+      i = 0;
+    }, 2000);
   }
-  spans[2].textContent = result;
-});
-
-// CheckBox Event
-
-checkBox.addEventListener("change", function (e) {
-  // console.log(e);
-  console.log(checkBox.checked);
-});
+}
+setInterval(typeWrite, 1000);
+// typeWrite();
