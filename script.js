@@ -1,36 +1,29 @@
 let form = document.querySelector("form");
-
+let inputs = form.elements;
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  let inputs = form.elements;
-  checkField(inputs["nom"]);
-  checkField(inputs["email"]);
-  checkEmail(inputs["email"]);
+  console.log(inputs["task"].value);
+  //1 creer un li
+  let list = document.createElement("li");
+
+  //2 Donner la valeur de l'input au li
+  list.textContent = inputs["task"].value;
+  //3 recupérer le ul et ajouter le li au ul
+  let ul = document.querySelector(".todo-list");
+  ul.appendChild(list);
+
+  //4 vider le champ input
+  inputs["task"].value = "";
+
+  // Creer le button
+  let button = document.createElement("button");
+  button.textContent = "Delete";
+
+  // ajouter le bouton au li
+  list.appendChild(button);
+  // ajouter un événement sur le button
+  button.addEventListener("click", function () {
+    // supprimer un element
+    list.remove();
+  });
 });
-
-function checkEmail(field) {
-  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]{3,}\.[a-zA-Z]{2,}$/;
-  if (regex.test(field.value)) {
-    field.className = "is_valid";
-    if (document.querySelector("input+.invalid_message")) {
-      document.querySelector("input+.invalid_message").remove();
-    }
-  } else {
-    field.className = "is_invalid";
-    if (!document.querySelector("input+.invalid_message")) {
-      let div = document.createElement("div");
-      div.textContent = "Please Enter a valid Email";
-      div.className = "invalid_message";
-      field.after(div);
-    }
-  }
-}
-
-function checkField(field) {
-  if (field.value.length == 0) {
-    field.className = "is_invalid";
-  } else {
-    field.className = "is_valid";
-    return field.value;
-  }
-}
