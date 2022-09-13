@@ -12,8 +12,7 @@
       <p>
         <label for="nom">Nom</label>
         <input type="text" id="nom" name="nom" value=""  />
-      <div class="invalid_message">
-      </div>
+      
       </p>
       <p>
         <label for="email">Email</label>
@@ -22,11 +21,12 @@
           id="email"
           name="email"
           value="test@gmail.com"
+          pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9]{3,}\.[a-zA-Z]{2,}"
           required
         />
       </p>
       <input type="submit" value="Envoyer" />
-    </form>
+    </form
     <!-- Javascript -->
     <script src="script.js"></script>
   </body>
