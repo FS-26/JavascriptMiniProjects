@@ -14,6 +14,14 @@ resultat: 46
 
 -nbre entré = -1
 message = "Index of Array out of bounds";
+
+Exercice 3
+Ecrire une promesse qui renverse l'ordre des mots d'une phrase et renvoie 
+le resultat si la taille de la phrase est supérieur à  5  sinon renvoie un message "Phrase incorrect" 
+
+exemple
+phrase = "I Love You"
+resultat = You Love I
 */
 
 function sommeTab(n) {
@@ -33,7 +41,7 @@ function sommeTab(n) {
   });
   return promesse;
 }
-
+/* 
 let prom = sommeTab(1);
 prom
   .then((res) => {
@@ -41,4 +49,22 @@ prom
   })
   .catch((res) => {
     console.log(res);
+  }); */
+
+let promesse = new Promise(function (resolve, reject) {
+  let phrase = "I Love Coding";
+  if (phrase.length > 5) {
+    let regex = /(\w+) (\w+) (\w+)/g;
+    resolve(phrase.replace(regex, "$3 $2 $1"));
+  } else {
+    reject("Phrase Incorrect");
+  }
+});
+
+promesse
+  .then((phrase) => {
+    console.log(phrase);
+  })
+  .catch((message) => {
+    console.log(message);
   });
