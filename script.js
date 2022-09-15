@@ -1,37 +1,58 @@
-let url = "https://jsonplaceholder.typicode.com/todos";
-/* 
-fetch(url)
-  .then((response1) => {
-    return response1.json();
-  })
-  .then((res) => {
-    console.log(res);
-  });
- */
+let api_url = "https://jsonplaceholder.typicode.com/users";
 
-// créer UL
-let ul = document.createElement("ul");
-document.body.appendChild(ul);
-
-async function getApiData(url) {
-  // recupérer les donner avec fetch
-  let data = await fetch(url);
-  /*la methode json() permet de convertir le resutat reçu en objet JSON 
-   la methode json() renvoie une nouvelle promesse qu'on va recupérer
-  */
-  let data2 = await data.json();
-
-  for (let i = 0; i < 10; i++) {
-    let todo = data2[i];
-
-    let li = document.createElement("li");
-    ul.appendChild(li);
-    li.innerHTML = `<span style='color: green'>${todo.id}</span>| <strong>${todo.title}</strong> |<input type='checkbox'/>`;
-    // console.log(data2[i]);
-  }
+async function getName(url) {
+  fetch(url, { method: "GET" })
+    .then((response1) => {
+      return response1.json();
+    })
+    .then((res) => {
+      for (let i = 0; i < 10; i++) {
+        let user = res[i];
+        console.log(user.name, user.email);
+      }
+    });
 }
 
-let button = document.querySelector("button");
-button.addEventListener("click", function () {
-  getApiData(url);
+// async function addUser(url, user) {
+//   let options = {
+//     method: "POST",
+//     body: JSON.stringify(user),
+//     headers: {
+//       " Content-type": "application/json",
+//     },
+//   };
+
+//   fetch(url, options)
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//     });
+// }
+
+let newUser = {
+  name: "Houda el Houda",
+  username: "luna",
+  email: "luna@april.biz",
+};
+let options = {
+  method: "POST",
+  body: JSON.stringify(newUser),
+  headers: {
+    "Content-type": "application/json",
+  },
+};
+
+fetch(api_url, options)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
+addUser(api_url, newUser);
+
+document.querySelector("button").addEventListener("click", () => {
+  getName(api_url);
 });
