@@ -34,22 +34,35 @@ function sommeTab(n) {
       for (let i = 0; i < n; i++) {
         somme = somme + nombres[i];
       }
-      resolve(somme);
+      // resolve(somme);
+      setTimeout(() => {
+        resolve(somme);
+      }, 1000);
     } else {
       reject("Index of Array out of bounds");
     }
   });
   return promesse;
 }
-/* 
-let prom = sommeTab(1);
+
+/* let prom = sommeTab(2);
 prom
   .then((res) => {
     console.log(res);
   })
   .catch((res) => {
     console.log(res);
-  }); */
+  });
+
+console.log("Apres promesse"); */
+
+/* console.log(x);
+
+try {
+  console.log(x);
+} catch (err) {
+  console.log(err.message);
+} */
 
 let promesse = new Promise(function (resolve, reject) {
   let phrase = "I Love Coding";
@@ -61,10 +74,69 @@ let promesse = new Promise(function (resolve, reject) {
   }
 });
 
-promesse
-  .then((phrase) => {
-    console.log(phrase);
-  })
-  .catch((message) => {
-    console.log(message);
-  });
+// promesse
+//   .then((phrase) => {
+//     console.log(phrase);
+//   })
+//   .catch((message) => {
+//     console.log(message);
+//   });
+
+/* 
+  function asynchrone
+  */
+async function add(a, b) {
+  const res = await (a + b);
+  return res;
+}
+
+// let s = await add(2, 4);
+add(2, 10).then((res) => {
+  console.log(res);
+});
+
+async function afficherSomme(n) {
+  try {
+    let res = await sommeTab(n);
+    let phRev = await promesse;
+    console.log(res, phRev);
+  } catch (error) {
+    console.log(error);
+  }
+  return "hello";
+}
+
+afficherSomme(3).then((message) => {
+  console.log(message);
+});
+console.log("Apres promise");
+
+// async function remplirTab(n){
+//   let tab=[];
+//   for(let i=0 ; i<n ;i++){
+//     tab[i]=i+1
+
+//   }
+//   return tab[i];
+// }
+// remplirTab(5);
+
+// Sara
+function remplirTab(n) {
+  let tab = [];
+
+  for (let i = 0; i < n + 1; i++) {
+    tab[i] = i + 1;
+  }
+  return Promise.resolve(tab);
+}
+/* let prom = remplirTab(5);
+prom.then((rem) => {
+  console.log(rem);
+});
+ */
+async function tableau(a) {
+  let resultat = await remplirTab(a);
+  console.log(resultat);
+}
+tableau(10);
