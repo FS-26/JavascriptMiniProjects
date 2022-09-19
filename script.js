@@ -1,58 +1,36 @@
-let api_url = "https://jsonplaceholder.typicode.com/users";
+/* 
+localStorage
+*/
+// // ajouter ou modifier un élément
+// window.localStorage.setItem("nom", "Touria");
+// window.localStorage.setItem("nom1", "Amine");
+// window.localStorage.setItem("nom3", "Houda");
 
-async function getName(url) {
-  fetch(url, { method: "GET" })
-    .then((response1) => {
-      return response1.json();
-    })
-    .then((res) => {
-      for (let i = 0; i < 10; i++) {
-        let user = res[i];
-        console.log(user.name, user.email);
-      }
-    });
-}
+// récupération de l'élément grâce à la clé
+/* let myName = localStorage.getItem("nom");
+let myName2 = localStorage.getItem("nom2");
+console.log(myName, myName2); */
+// Suppression de l'élement
+// localStorage.removeItem("nom");
 
-// async function addUser(url, user) {
-//   let options = {
-//     method: "POST",
-//     body: JSON.stringify(user),
-//     headers: {
-//       " Content-type": "application/json",
-//     },
-//   };
+// Vider le localstorage
+// localStorage.clear();
+// Session storage
 
-//   fetch(url, options)
-//     .then((response) => {
-//       return response.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//     });
-// }
+// sessionStorage.setItem("mode", "dark");
 
-let newUser = {
-  name: "Houda el Houda",
-  username: "luna",
-  email: "luna@april.biz",
-};
-let options = {
-  method: "POST",
-  body: JSON.stringify(newUser),
-  headers: {
-    "Content-type": "application/json",
-  },
-};
+// let user = {
+//   nom: "Ablam",
+//   prenom: "Polarus",
+// };
+// let userString = JSON.stringify(user);
+// console.log(userString);
+// localStorage.setItem("user", userString);
 
-fetch(api_url, options)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  });
-addUser(api_url, newUser);
+// let data = localStorage.getItem("user");
+// console.log(JSON.parse(data));
 
-document.querySelector("button").addEventListener("click", () => {
-  getName(api_url);
-});
+// let numbers = [1, 20, 30, -1];
+// localStorage.setItem("numbers", JSON.stringify(numbers));
+let data = localStorage.getItem("numbers");
+console.log(JSON.parse(data));
